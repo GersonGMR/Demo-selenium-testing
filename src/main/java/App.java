@@ -44,8 +44,8 @@ public class App {
             throw new Exception();
         }
 
-        //testing
-        WebElement englishButton = driver.findElement(By.id("js-link-box-en"));
+        //Clicking on a WebPage
+        /*WebElement englishButton = driver.findElement(By.id("js-link-box-en"));
         englishButton.click();
         String expectedTextOnClick = "Welcome to Wikipedia,";
         WebElement titleEnglishPage = driver.findElement(By.id("mp-welcome"));
@@ -53,8 +53,16 @@ public class App {
             System.out.println("Test has passed, page is the english one.");
         } else {
             System.out.println("Test has failed! Click() was not successful.");
-        }
+        }*/
 
+        //Enviando texto en un webpage
+        WebElement inputSearch= driver.findElement(By.id("searchInput"));
+        String searchStr = "Selenium Webdriver";
+        inputSearch.sendKeys(searchStr);
+        WebElement searchButton = driver.findElement(By.cssSelector("#search-form > fieldset > button"));
+        searchButton.click();
+
+        //Cierra el driver para no consumir memoria en segundo plano
         driver.close();
     }
 }
