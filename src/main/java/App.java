@@ -2,6 +2,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,6 +12,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         WebDriver driver = new ChromeDriver();
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        //Implicit wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get("http://www.wikipedia.org");
@@ -21,6 +25,9 @@ public class App {
 
         System.out.println("El tiempo necesario para obtener el locator por id es: " + (end-start));
 
+        //Explicit wait
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("js-link-box-en"))));
         //xpath
         start = System.currentTimeMillis();
         driver.findElement(By.xpath("//*[@id=\"www-wikipedia-org\"]/div[2]/div[2]"));
